@@ -1,0 +1,29 @@
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.value {
+  font-size: 4em;
+  color: white;
+}
+
+.button {
+  border-radius: 3px;
+  border: 2px solid white;
+  margin: 15px;
+  padding: 5px;
+  background: #764ABC;
+  color: white;
+}
+
+.input {
+  border-radius: 3px;
+  border: none;
+  padding: 5px;
+  text-align: center;
+}
+
+.error {
+    color: yellow;
+}
