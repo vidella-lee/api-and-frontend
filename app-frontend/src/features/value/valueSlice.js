@@ -38,12 +38,17 @@ const valueSlice = createSlice({
         state.errorMessage = action.payload;
         console.log(action.payload);
       }
+    },
+    showErr: {
+      reducer(state, action){
+        state.value = action.payload;
+      }
     }
   },
 });
 
 //actions
-export const { getValue, addValue, getValueSuccess, getValueFailure, addValueFailure } = valueSlice.actions;
+export const { getValue, addValue, getValueSuccess, getValueFailure, addValueFailure, showErr } = valueSlice.actions;
 
 
 //selectors
@@ -70,20 +75,21 @@ export function fetchValue() {
   }
 
 //Send new value to server 
-export function newValue(val, error) {
+export function newValue(val) {
   return async dispatch => {
     try {
-      const response = await axios.post('http://localhost:3001/', {value: val});
+      const response = await axios.post('http://localhost:3001/', {value: val, });
+      console.log(response.data);
       dispatch(addValue(response.data));
       dispatch(getValueSuccess(response.data));
-
+      
       //hide error message if request is successful
       document.getElementById("error-msg").innerHTML = "";
       document.getElementById("error-msg").style.display = "none";
       return response;
     } catch (error) {
         dispatch(addValueFailure(error.response.data.errors[0].msg));
-
+        dispatch(showErr(error.response.data.value));
         //Show error message
         document.getElementById("error-msg").style.display = "inline";
         document.getElementById("error-msg").innerHTML = error.response.data.errors[0].msg;

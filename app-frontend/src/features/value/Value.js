@@ -8,18 +8,10 @@ import styles from './Value.module.css';
 export function Value() {
   const { value } = useSelector(valueSelector);
   const error  = useSelector(errorMessageSelector);
-  const hasErrors = useSelector(hasErrorsSelector);
   const dispatch = useDispatch();
   const [val, setVal] = useState(value);
-  //const [errorMsg, setErrorMsg] = useState(error);
   
   const valNum = Number(val);
-  
-  function handleError(err){
-   if(hasErrors){
-     alert(err);
-   }
-  }
 
   useEffect(() => {
     dispatch(fetchValue());
