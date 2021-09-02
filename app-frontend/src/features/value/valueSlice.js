@@ -20,7 +20,6 @@ const valueSlice = createSlice({
       reducer(state, action) {
         state.loading = true;
         state.value = action.payload;
-        console.log(state.value);  
       }    
     },
     getValueSuccess: (state, { payload }) => {
@@ -79,7 +78,6 @@ export function newValue(val) {
   return async dispatch => {
     try {
       const response = await axios.post('http://localhost:3001/', {value: val, });
-      console.log(response.data);
       dispatch(addValue(response.data));
       dispatch(getValueSuccess(response.data));
       
