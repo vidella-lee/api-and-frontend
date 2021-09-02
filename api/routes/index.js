@@ -19,7 +19,7 @@ function validationMiddleware(req, res, next){
 //middleware function to round req to 2 decimal places
 function roundNumMiddleware(req, res, next) {
   const num = parseFloat(req.body.value).toFixed(2);
-  res.send(num);
+  req.body.value = num;
   next();
 }
 
