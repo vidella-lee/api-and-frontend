@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchValue, newValue, valueSelector, errorMessageSelector, hasErrorsSelector } from './valueSlice';
+import { newValue, valueSelector, errorMessageSelector } from './valueSlice';
 
 import styles from './Value.module.css';
 
@@ -12,10 +12,6 @@ export function Value() {
   const [val, setVal] = useState(value);
   
   const valNum = Number(val);
-
-  useEffect(() => {
-    dispatch(fetchValue());
-  }, [dispatch]);
 
   return (
     <div className={styles.column}>
@@ -32,7 +28,7 @@ export function Value() {
         type='submit'
         name='value'
         aria-label="Add value"
-        onClick={() => dispatch(newValue(valNum.toString(), error))}
+        onClick={() => dispatch(newValue(valNum.toString()))}
       >
           Double
         </button>

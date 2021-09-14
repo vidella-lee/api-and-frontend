@@ -24,9 +24,9 @@ function roundNumMiddleware(req, res, next) {
 }
 
 /* GET home page. */
-router.get('/', function(req, res) {
-  res.send('0');
-});
+// router.get('/', function(req, res) {
+//   res.send('0');
+// });
 
 //POST
 router.post('/', [check('value').isNumeric().withMessage('Invalid input. Must contain only numbers.'),], validationMiddleware, roundNumMiddleware, doubleValueController.doubleValue);
